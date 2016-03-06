@@ -19,20 +19,19 @@ public class Main {
 	
 
 	public static void main(String[] args) {
-		
-		experiment1(500, 10000);
-		
-		experiment2(500, 10000, 40);
-		
-		experiment3(500, 10000, 40);
+		//minDepth, maxDepth, jump
+		experiment1(500, 10000, 100);
+		//minDepth, maxDepth, repeat, jump
+		experiment2(500, 10000, 100, 100);
+		//minDepth, maxDepth, repeat, jump
+		experiment3(500, 10000, 100, 100);
 		
 	}
-	
 
 	/**
-	 * experiment 2
+	 * experiment 3
 	 */
-	private static void experiment3(int minDepth, int maxDepth, int repeat) {
+	private static void experiment3(int minDepth, int maxDepth, int repeat, int jump) {
 		DFID dfid = new DFID();
 		DFS dfs = new DFS();
 		BFS bfs = new BFS();
@@ -41,16 +40,24 @@ public class Main {
 		LinkedList<Result> resultsBFS = new LinkedList<Result>();
 		LinkedList<Result> resultsDFID = new LinkedList<Result>();
 
-		int BFS_SumGenerateNodes = 0, DFS_SumGenerateNodes = 0, DFID_SumGenerateNodes = 0;
-		int BFS_SumMaxHoldNodes = 0, DFS_SumMaxHoldNodes = 0, DFID_SumMaxHoldNodes = 0;
+		int BFS_SumGenerateNodes, DFS_SumGenerateNodes, DFID_SumGenerateNodes;
+		int BFS_SumMaxHoldNodes, DFS_SumMaxHoldNodes, DFID_SumMaxHoldNodes;
 		
 		Result resultBFS = null, resultDFS = null, resultDFID = null;
 		Graph graph;
 		int goalValue; // not exist
 
 		//create the trees and get the results
-		for (int i=minDepth; i<maxDepth; i=i+100){
+		for (int i=minDepth; i<maxDepth; i=i+jump){
 			graph = Graph.create2Graph(i);
+			
+			BFS_SumGenerateNodes = 0;
+			DFS_SumGenerateNodes = 0;
+			DFID_SumGenerateNodes = 0;
+			
+			BFS_SumMaxHoldNodes = 0;
+			DFS_SumMaxHoldNodes = 0;
+			DFID_SumMaxHoldNodes = 0;
 			
 			for(int j=0; j< repeat; j++){
 				goalValue= (int)(Math.random()*i);
@@ -102,7 +109,7 @@ public class Main {
 	/**
 	 * experiment 2
 	 */
-	private static void experiment2(int minDepth, int maxDepth, int repeat) {
+	private static void experiment2(int minDepth, int maxDepth, int repeat,int jumps) {
 		DFID dfid = new DFID();
 		DFS dfs = new DFS();
 		BFS bfs = new BFS();
@@ -111,16 +118,25 @@ public class Main {
 		LinkedList<Result> resultsBFS = new LinkedList<Result>();
 		LinkedList<Result> resultsDFID = new LinkedList<Result>();
 
-		int BFS_SumGenerateNodes = 0, DFS_SumGenerateNodes = 0, DFID_SumGenerateNodes = 0;
-		int BFS_SumMaxHoldNodes = 0, DFS_SumMaxHoldNodes = 0, DFID_SumMaxHoldNodes = 0;
+		int BFS_SumGenerateNodes, DFS_SumGenerateNodes, DFID_SumGenerateNodes;
+		int BFS_SumMaxHoldNodes, DFS_SumMaxHoldNodes, DFID_SumMaxHoldNodes;
 		
 		Result resultBFS = null, resultDFS = null, resultDFID = null;
 		Graph graph;
 		int goalValue; // not exist
 
 		//create the trees and get the results
-		for (int i=minDepth; i<maxDepth; i=i+100){
+		for (int i=minDepth; i<maxDepth; i=i+jumps){
 			graph = Graph.create3Graph(i);
+			
+			BFS_SumGenerateNodes = 0;
+			DFS_SumGenerateNodes = 0;
+			DFID_SumGenerateNodes = 0;
+			
+			BFS_SumMaxHoldNodes = 0;
+			DFS_SumMaxHoldNodes = 0;
+			DFID_SumMaxHoldNodes = 0;
+			
 			
 			for(int j=0; j< repeat; j++){
 				goalValue= (int)(Math.random()*i);
@@ -169,7 +185,7 @@ public class Main {
 	 * search trees with value that dont exist
 	 * how long it take to generate all the tree;
 	 */
-	private static void experiment1(int minDepth, int maxDepth) {
+	private static void experiment1(int minDepth, int maxDepth, int jumps) {
 		DFID dfid = new DFID();
 		DFS dfs = new DFS();
 		BFS bfs = new BFS();
@@ -183,7 +199,7 @@ public class Main {
 		int goalValue = -1; // not exist
 
 		//create the trees and get the results
-		for (int i=minDepth; i<maxDepth; i=i+500){
+		for (int i=minDepth; i<maxDepth; i=i+jumps){
 			
 			graph = Graph.create3Graph(i);
 							
